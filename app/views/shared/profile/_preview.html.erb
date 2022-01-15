@@ -4,7 +4,7 @@
         <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-md rounded-lg mt-20">
             <div class="px-6">
                 <div class="flex flex-wrap justify-center mb-10">
-                    <%= image_tag gravatar_url_for(current_user), 
+                    <%= image_tag user_profile_img(current_user), 
                         id: "image-preview", style:"max-width:200px", 
                         class: "shadow-xl rounded-full absolute w-1/2 transform -translate-y-1/2" 
                     %>

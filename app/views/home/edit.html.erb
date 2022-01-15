@@ -11,11 +11,22 @@
         <%= render 'shared/edit_section', title: "Profile details" do %>
             <%= f.text_field :name, value: @profile.name || current_user.name, placeholder: "Name" %><br/>
             <div class="flex items-center my-4">
-                <%= image_tag gravatar_url_for(current_user), 
+            <label class="py-2 px-4 flex justify-start items-center bg-blue-600 hover:bg-blue-700 focus:ring-blue-500 focus:ring-offset-blue-200 text-white transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg mr-4">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
+</svg>
+            <span>Upload Image 
+            <%= f.file_field :avatar,label:"Upload Image", id:"pictureUpload",class: "hidden"%>
+            </span>
+             
+            </label>
+             
+                <%= image_tag user_profile_img(current_user), 
                     id: "image-preview", style:"max-width:200px"
                 %>
             </div>
-           
+             
+          
             <%= f.text_field :job_title, value: @profile.job_title, placeholder: "Job title" %><br/>
             <%= f.text_field :total_experience, value: @profile.total_experience, placeholder: "Total experience" %><br/>
             <%= f.text_area :overview, value: @profile.overview, placeholder: "Profile overview", required: true %><br/>
@@ -43,3 +54,22 @@
     <% end %>
 
 </main>
+<script>
+         $(function() {
+        $('#pictureUpload').on('change', function(event) {
+            const files = event.target.files;
+            const image = files[0];
+            // here's the file size
+            console.log(image.size);
+            const reader = new FileReader();
+            reader.onload = function(file) {
+                const img = new Image();
+                console.log(file);
+                img.src = file.target.result;
+                $('#target').html(img);
+            }
+            reader.readAsDataURL(image);
+            console.log(files);
+        });
+    });
+</script>
