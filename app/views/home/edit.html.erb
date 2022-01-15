@@ -15,6 +15,7 @@
                     id: "image-preview", style:"max-width:200px"
                 %>
             </div>
+           
             <%= f.text_field :job_title, value: @profile.job_title, placeholder: "Job title" %><br/>
             <%= f.text_field :total_experience, value: @profile.total_experience, placeholder: "Total experience" %><br/>
             <%= f.text_area :overview, value: @profile.overview, placeholder: "Profile overview", required: true %><br/>
